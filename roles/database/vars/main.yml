@@ -1,0 +1,4 @@
+---
+# vars file for database
+mysql_root_pass: SuPer_DB_Pass
+apache_host: 172.31.10.181

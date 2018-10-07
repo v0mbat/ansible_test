@@ -1,0 +1,62 @@
+---
+# tasks file for database
+- name: Install MySQL
+  apt: name={{ item }} update_cache=yes state=present
+  become: yes
+  with_items:
+    - python-mysqldb
+    - python3-dev
+    - python3-mysqldb
+    - python3-pip
+    - libmysqlclient-dev
+    - mysql-server
+
+- name: Start MySQL
+  become: yes
+  service:
+    name: mysql
+    state: started
+
+- name: Update root pass
+  become: yes
+  mysql_user:
+    name: root 
+    host: "{{ item }}"
+    state: present
+    password: "{{ mysql_root_pass }}"
+    login_user: root
+    login_password: "{{ mysql_root_pass }}"
+    check_implicit_admin: yes
+    priv: "*.*:ALL,GRANT"
+  with_items:
+    - "{{ db_serv }}"
+    - "127.0.0.1"
+    - "::1"
+    - "localhost"
+
+- name: Create WP DB
+  mysql_db: 
+    name: "{{ wp_mysql_db }}"
+    state: present 
+    login_user: root
+    login_password: "{{ mysql_root_pass }}"
+  become: yes
+  
+- name: Create WP User
+  mysql_user:
+    name: "{{ wp_mysql_user }}"
+    password: "{{ wp_mysql_pass }}"
+    priv: "{{ wp_mysql_db }}.*:ALL"
+    state: present
+    login_user: root
+    login_password: "{{ mysql_root_pass }}"
+    host: "{{ apache_host }}"
+  become: yes
+
+- name: Restart mysql
+  service:
+    name: mysql
+    state: restarted
+  become: yes
+    
+    

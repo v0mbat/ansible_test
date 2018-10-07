@@ -1,0 +1,8 @@
+[frontend]
+34.245.103.122 ansible_python_interpreter=/usr/bin/python3 ansible_user=ubuntu
+[backend] 
+34.250.209.231 ansible_python_interpreter=/usr/bin/python3 ansible_user=ubuntu
+[database]
+52.209.120.37 ansible_python_interpreter=/usr/bin/python3 ansible_user=ubuntu
+
+

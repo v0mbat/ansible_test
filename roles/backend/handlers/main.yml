@@ -1,0 +1,10 @@
+---
+- name: restart apache2
+  service:
+    name: apache2
+    state: restarted
+  become: yes
+
+- name: restart iptables
+  service: name=iptables state=restarted
+  become: yes

@@ -1,0 +1,18 @@
+- hosts: all
+  gather_facts: False
+  
+
+- hosts: database
+  gather_facts: False
+  roles: 
+    - database
+    
+- hosts: backend
+  gather_facts: False
+  roles:
+    - backend
+
+- hosts: frontend
+  gather_facts: False
+  roles:
+    - frontend

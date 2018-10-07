@@ -1,0 +1,5 @@
+---
+frontend: 34.245.103.122
+backend: 172.31.10.181
+# vars file for frontend
+cache_dir: /var/www/cache

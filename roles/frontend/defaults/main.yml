@@ -1,0 +1,5 @@
+---
+nginx_open_ports:
+  - 80
+  - 443
+# defaults file for frontend
