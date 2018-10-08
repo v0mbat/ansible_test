@@ -1,5 +1,6 @@
 ---
 # vars file for backend
+frontend: 34.245.103.122
 wp_dir: /var/www/wordpress
 wp_site_title: Test2
 wp_admin_user: admin
